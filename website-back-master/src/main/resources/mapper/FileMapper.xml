@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chilam.websiteback.mapper.FileMapper">
+    <resultMap id="BaseResultMap" type="cn.chilam.websiteback.pojo.File">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="size" jdbcType="BIGINT" property="size"/>
+        <result column="upload_date" jdbcType="TIMESTAMP" property="date"/>
+        <result column="chapter_id" jdbcType="INTEGER" property="chapterId"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, url, size, size,upload_date,chapter_id
+    </sql>
+
+    <insert id="insert" parameterType="cn.chilam.websiteback.pojo.File">
+        insert into file (name, url, size, chapter_id)
+        values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+                #{size,jdbcType=BIGINT}, #{chapterId,jdbcType=INTEGER})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete
+        from file
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getFileInfoByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from file
+        where name=#{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getUrlByName" parameterType="java.lang.String" resultType="java.lang.String">
+        select url
+        from file
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllFileInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from file
+    </select>
+    <select id="getFileInfoById" parameterType="java.lang.Integer"
+            resultType="cn.chilam.websiteback.pojo.File">
+        select
+        <include refid="Base_Column_List"/>
+        from file where id=#{id,jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>

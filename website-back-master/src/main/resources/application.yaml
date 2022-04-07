@@ -1,0 +1,31 @@
+# Mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+# PageHelper配置
+pagehelper:
+  helper-dialect: mysql
+spring:
+  # 配置MySQL数据库
+  datasource:
+    password: 123456
+    url: jdbc:mysql://localhost:3306/db_website?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=GMT%2B8
+    username: root
+  servlet:
+    multipart:
+      # 上传文件总的最大值
+      max-request-size: 10240MB
+      # 单个文件最大值
+      max-file-size: 2048MB
+upload:
+  file:
+    # 文件上传路径
+    location: C://Users/Javayqy/Desktop/cvweb/website-back-master/resources
+server:
+  # api端口
+  port: 9999
+# 日志文件配置
+logging:
+  file:
+    # 日志文件路径
+    name: C://Users/Javayqy/Desktop/cvweb/website-back-master/log/website.log
+  level.config: info
